@@ -1,5 +1,6 @@
 # schskillchain(ssc)
 - commnad
+
 //ssc skillchain order [sc_tier] [mb] [mb_tier]
 
     skillchain = f[fire],b[blizzard],a[aero],s[stone],t[thunder],w[water],l[light],d[dark],f2[fire2],b2[blizzard2],a2[aero2],s2[stone2],t2[thunder2],w2[water2],l2[light2],d2[dark2]
