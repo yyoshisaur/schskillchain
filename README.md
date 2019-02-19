@@ -1,4 +1,11 @@
 # schskillchain(ssc)
+- usage
+
+  Open Liquefacrion(溶解)
+
+        //ssc f o
+
+
 - commnad
 
   - //ssc skillchain order [sc_tier] [mb] [mb_tier]
@@ -28,7 +35,7 @@
 
   - target:
 
-    type: spell target (t, bt, etc.)
+    type: spell target (e.g. t or bt)
 
   - auto_dark_arts:
   
