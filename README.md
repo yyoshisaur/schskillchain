@@ -3,9 +3,9 @@
 
   Open Liquefacrion(溶解)
 
-        //ssc f o
+        //ssc fire open
 
-  Close Liquefacrion(溶解)
+  Close Liquefacrion(溶解) (settable the first letter of parameter)
 
         //ssc f c
 
