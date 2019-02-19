@@ -301,12 +301,19 @@ function check_addendum_black(buffs)
     end
 end
 
-function get_auto_translate_char_squence(phrase)
+function get_auto_translate_char_squence(lang, phrase)
     local at_start = 0xFD
     local at_end = 0xFD
     local at_type = 0x02
-    local at_lang = at_param.lang_type
-    local phrase_id = res.auto_translates:with(at_param.lang, phrase).id
+
+    local at_lang
+    if lang == 'ja' then
+        at_lang = 0x01
+    else
+        at_long = 0x02
+    end
+
+    local phrase_id = res.auto_translates:with(lang, phrase).id
 
     if phrase_id then
         local phrase_id_upper = bit.band(bit.rshift(phrase_id, 8), 0xFF)
@@ -317,20 +324,20 @@ function get_auto_translate_char_squence(phrase)
 end
 
 function open_skillchain_message(sc, target)
-    local sc_msg = get_auto_translate_char_squence(skillchain[sc]['at']['sc_name'])
-    local start_msg = get_auto_translate_char_squence('連携準備オッケー！')
+    local sc_msg = get_auto_translate_char_squence(at_param.lang, skillchain[sc]['at']['sc_name'])
+    local start_msg = get_auto_translate_char_squence('ja', '連携準備オッケー！')
 
     return 'input /party Opening:'.. sc_msg..start_msg..'-> <'..target..'>;'
 end
 
 function close_skillchain_message(sc, target)
-    local sc_msg = get_auto_translate_char_squence(skillchain[sc]['at']['sc_name'])
-    local end_msg = get_auto_translate_char_squence('全力で攻撃だ！')
+    local sc_msg = get_auto_translate_char_squence(at_param.lang, skillchain[sc]['at']['sc_name'])
+    local end_msg = get_auto_translate_char_squence('ja', '全力で攻撃だ！')
 
     local msg = 'input /party Closing:'..sc_msg..'MB:'
 
     for i, v in ipairs(skillchain[sc]['at']['sc_ele']) do
-        msg = msg..get_auto_translate_char_squence(v)
+        msg = msg..get_auto_translate_char_squence(at_param.lang, v)
     end
 
     msg = msg..end_msg..'-> <'..target..'>;'
@@ -345,7 +352,7 @@ windower.register_event('addon command', function(...)
     local main_job = string.lower(player.main_job)
     
     if main_job ~= 'sch' then
-         windower.add_to_chat(209, _addon.name..': '..get_auto_translate_char_squence('ジョブチェンジ')..get_auto_translate_char_squence('学者')..get_auto_translate_char_squence('はい。お願いします。'))
+         windower.add_to_chat(209, _addon.name..': '..get_auto_translate_char_squence('ja', 'ジョブチェンジ')..get_auto_translate_char_squence('ja', '学者')..get_auto_translate_char_squence('ja', 'はい。お願いします。'))
          windower.add_to_chat(209, help_text)
          return
     end
@@ -364,14 +371,14 @@ windower.register_event('addon command', function(...)
         spell_1 = get_spell(param.sc, 'open', '1')
         spell_2 = get_spell(param.sc, 'close', param.sc_tier)
         if current_stratagems_charge < 2 then
-            windower.add_to_chat(209, _addon.name..': '..get_auto_translate_char_squence('戦術魔道書')..get_auto_translate_char_squence('持っていますか？'))
-            windower.send_command('input /echo '.._addon.name..': <recast='..get_auto_translate_char_squence('戦術魔道書')..'>')
+            windower.add_to_chat(209, _addon.name..': '..get_auto_translate_char_squence('ja', '戦術魔道書')..get_auto_translate_char_squence('ja', '持っていますか？'))
+            windower.send_command('input /echo '.._addon.name..': <recast='..get_auto_translate_char_squence('ja', '戦術魔道書')..'>')
         end
     else
         spell_1 = get_spell(param.sc, param.order, param.sc_tier)
         if current_stratagems_charge < 1 then
-            windower.add_to_chat(209, _addon.name..': '..get_auto_translate_char_squence('戦術魔道書')..get_auto_translate_char_squence('持っていますか？'))
-            windower.send_command('input /echo '.._addon.name..': <recast='..get_auto_translate_char_squence('戦術魔道書')..'>')
+            windower.add_to_chat(209, _addon.name..': '..get_auto_translate_char_squence('ja', '戦術魔道書')..get_auto_translate_char_squence('ja', '持っていますか？'))
+            windower.send_command('input /echo '.._addon.name..': <recast='..get_auto_translate_char_squence('ja', '戦術魔道書')..'>')
         end
     end
 
@@ -421,11 +428,11 @@ windower.register_event('addon command', function(...)
                                text_command
                 windower.send_command(text_command)
             else
-                windower.add_to_chat(209, _addon.name..': '..get_auto_translate_char_squence('黒のグリモア')..get_auto_translate_char_squence('持っていますか？'))
-                windower.send_command('input /echo '.._addon.name..': <recast='..get_auto_translate_char_squence('黒のグリモア')..'>')
+                windower.add_to_chat(209, _addon.name..': '..get_auto_translate_char_squence('ja', '黒のグリモア')..get_auto_translate_char_squence('ja', '持っていますか？'))
+                windower.send_command('input /echo '.._addon.name..': <recast='..get_auto_translate_char_squence('ja', '黒のグリモア')..'>')
             end
         else
-            windower.add_to_chat(209, _addon.name..': '..get_auto_translate_char_squence('黒のグリモア')..get_auto_translate_char_squence('持っていますか？'))
+            windower.add_to_chat(209, _addon.name..': '..get_auto_translate_char_squence('ja', '黒のグリモア')..get_auto_translate_char_squence('ja', '持っていますか？'))
         end
     end
 end)
