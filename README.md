@@ -1,10 +1,21 @@
 # schskillchain(ssc)
-- usage
+- usage example
 
   Open Liquefacrion(溶解)
 
         //ssc f o
 
+  Close Liquefacrion(溶解)
+
+        //ssc f c
+
+  Close Liquefacrion(溶解) and Magic Burst Pyrohelix II (火門の計II)
+
+        //ssc f c mb h2 
+
+  Open and Close Fragmentation(分解) (Closing Spell Helix) and Magic Burst Thunder V (サンダーV)
+
+        //ssc t2 a h mb 5
 
 - commnad
 
