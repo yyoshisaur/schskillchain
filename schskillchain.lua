@@ -353,7 +353,6 @@ windower.register_event('addon command', function(...)
     
     if main_job ~= 'sch' then
          windower.add_to_chat(209, _addon.name..': '..get_auto_translate_char_squence('ja', 'ジョブチェンジ')..get_auto_translate_char_squence('ja', '学者')..get_auto_translate_char_squence('ja', 'はい。お願いします。'))
-         windower.add_to_chat(209, help_text)
          return
     end
 
