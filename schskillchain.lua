@@ -310,7 +310,7 @@ function get_auto_translate_char_squence(lang, phrase)
     if lang == 'ja' then
         at_lang = 0x01
     else
-        at_long = 0x02
+        at_lang = 0x02
     end
 
     local phrase_id = res.auto_translates:with(lang, phrase).id
